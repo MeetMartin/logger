@@ -40,7 +40,7 @@ import {isTrue, passThrough, compose, upperCaseOf, identity} from "@7urtle/lambd
  * logger.log('hello world'); // => 'hello world'
  * // returns 'hello world' and library function is called defined as () => null
  */
-const logger = configuration => getLogger({
+const logger = (configuration = undefined) => getLogger({
   levels: {
     log: true,
     debug: true,
