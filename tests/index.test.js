@@ -1,4 +1,4 @@
-import createLogger, {defaultDecorator, getLogger, log} from '../src/index';
+import logger, {defaultDecorator, getLogger, log} from '../src/index';
 
 // getMockLibrary :: [string] -> object
 const getMockLibrary = stack => ({
@@ -9,17 +9,17 @@ const getMockLibrary = stack => ({
   error: message => stack.push(message)
 });
 
-test('createLogger works without configuration.', () => {
-  const logger = createLogger();
+test('logger works without configuration.', () => {
+  const myLogger = logger();
 
-  expect(logger.log('hello world')).toBe('hello world');
-  expect(logger.info('hello world')).toBe('hello world');
-  expect(logger.debug('hello world')).toBe('hello world');
-  expect(logger.warn('hello world')).toBe('hello world');
-  expect(logger.error('hello world')).toBe('hello world');
+  expect(myLogger.log('hello world')).toBe('hello world');
+  expect(myLogger.info('hello world')).toBe('hello world');
+  expect(myLogger.debug('hello world')).toBe('hello world');
+  expect(myLogger.warn('hello world')).toBe('hello world');
+  expect(myLogger.error('hello world')).toBe('hello world');
 });
 
-test('createLogger works with configuration.', () => {
+test('logger works with configuration.', () => {
   let stack = [];
 
   const myConfiguration = {
@@ -31,13 +31,13 @@ test('createLogger works with configuration.', () => {
     library: getMockLibrary(stack)
   };
 
-  const logger = createLogger(myConfiguration);
+  const myLogger = logger(myConfiguration);
 
-  expect(logger.log('hello world')).toBe('hello world');
-  expect(logger.info('hello world')).toBe('hello world');
-  expect(logger.debug('hello world')).toBe('hello world');
-  expect(logger.warn('hello world')).toBe('hello world');
-  expect(logger.error('hello world')).toBe('hello world');
+  expect(myLogger.log('hello world')).toBe('hello world');
+  expect(myLogger.info('hello world')).toBe('hello world');
+  expect(myLogger.debug('hello world')).toBe('hello world');
+  expect(myLogger.warn('hello world')).toBe('hello world');
+  expect(myLogger.error('hello world')).toBe('hello world');
   expect(stack).toEqual([
       'log: hello world',
       'warn: hello world',
@@ -45,14 +45,14 @@ test('createLogger works with configuration.', () => {
   ])
 });
 
-test('createLogger works without configuration.', () => {
-  const logger = createLogger();
+test('logger works without configuration.', () => {
+  const myLogger = logger();
 
-  expect(logger.log('hello world')).toBe('hello world');
-  expect(logger.info('hello world')).toBe('hello world');
-  expect(logger.debug('hello world')).toBe('hello world');
-  expect(logger.warn('hello world')).toBe('hello world');
-  expect(logger.error('hello world')).toBe('hello world');
+  expect(myLogger.log('hello world')).toBe('hello world');
+  expect(myLogger.info('hello world')).toBe('hello world');
+  expect(myLogger.debug('hello world')).toBe('hello world');
+  expect(myLogger.warn('hello world')).toBe('hello world');
+  expect(myLogger.error('hello world')).toBe('hello world');
 });
 
 test('defaultDecorator decorates around level and message', () => {
@@ -74,13 +74,13 @@ test('getLogger works with configuration.', () => {
     library: getMockLibrary(stack)
   };
 
-  const logger = getLogger(myConfiguration);
+  const myLogger = getLogger(myConfiguration);
 
-  expect(logger.log('hello world')).toBe('hello world');
-  expect(logger.info('hello world')).toBe('hello world');
-  expect(logger.debug('hello world')).toBe('hello world');
-  expect(logger.warn('hello world')).toBe('hello world');
-  expect(logger.error('hello world')).toBe('hello world');
+  expect(myLogger.log('hello world')).toBe('hello world');
+  expect(myLogger.info('hello world')).toBe('hello world');
+  expect(myLogger.debug('hello world')).toBe('hello world');
+  expect(myLogger.warn('hello world')).toBe('hello world');
+  expect(myLogger.error('hello world')).toBe('hello world');
   expect(stack).toEqual([
     'log: hello world',
     'warn: hello world',

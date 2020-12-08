@@ -4,16 +4,16 @@ import {isTrue, passThrough, compose, upperCaseOf, identity} from "@7urtle/lambd
  * createLogger accepts configuration as its input and outputs an object representing a logger with methods
  * log, debug, info, warn, and error. If no configuration is provided then a default is used.
  *
- * @HindleyMilner createLogger :: object -> object
+ * @HindleyMilner logger :: object -> object
  *
  * @pure
  * @param {object} configuration
  * @return {object}
  *
  * @example
- * import createLogger from '@7urtle/logger';
+ * import logger from '@7urtle/logger';
  *
- * const myDefaultLogger = createLogger();
+ * const myDefaultLogger = logger();
  * myDefaultLogger.log('hello world'); // => 'hello world'
  * // returns 'hello world'
  * // but prints out '19/11/2020, 3:27:25 pm; LOG: hello world' using default decorator and console.log
@@ -33,14 +33,14 @@ import {isTrue, passThrough, compose, upperCaseOf, identity} from "@7urtle/lambd
  *     }
  * };
  *
- * const myCustomLogger = createLogger(myConfiguration);
- * myCustomLogger.debug('hello world'); // => 'hello world'
+ * const myCustomLogger = logger(myConfiguration);
+ * logger.debug('hello world'); // => 'hello world'
  * // returns 'hello world' but because debug level is false, the library function is not called
  *
- * myCustomLogger.log('hello world'); // => 'hello world'
+ * logger.log('hello world'); // => 'hello world'
  * // returns 'hello world' and library function is called defined as () => null
  */
-const createLogger = configuration => getLogger({
+const logger = configuration => getLogger({
   levels: {
     log: true,
     debug: true,
@@ -160,7 +160,7 @@ const log = configuration => level =>
     ? passThrough(compose(configuration.library[level], configuration.decorator(level)))
     : identity;
 
-export default createLogger;
+export default logger;
 
 export {
   defaultDecorator,
