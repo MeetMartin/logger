@@ -45,16 +45,6 @@ test('logger works with configuration.', () => {
   ])
 });
 
-test('logger works without configuration.', () => {
-  const myLogger = logger();
-
-  expect(myLogger.log('hello world')).toBe('hello world');
-  expect(myLogger.info('hello world')).toBe('hello world');
-  expect(myLogger.debug('hello world')).toBe('hello world');
-  expect(myLogger.warn('hello world')).toBe('hello world');
-  expect(myLogger.error('hello world')).toBe('hello world');
-});
-
 test('defaultDecorator decorates around level and message', () => {
   expect(defaultDecorator('apocalyptic')('server meltdown').includes('; APOCALYPTIC: server meltdown')).toBe(true);
 });
