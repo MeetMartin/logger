@@ -1,4 +1,4 @@
-import {isTrue, passThrough, compose, upperCaseOf, identity} from "@7urtle/lambda";
+import {isTrue, upperCaseOf, identity, lengthOf, isEqual, headOf, tailOf} from "@7urtle/lambda";
 
 /**
  * createLogger accepts configuration as its input and outputs an object representing a logger with methods
@@ -49,7 +49,13 @@ const logger = (configuration = undefined) => getLogger({
     error: true,
     ...(configuration && configuration.levels)
   },
-  library: configuration && configuration.library || console,
+  library: configuration && configuration.library || {
+    log: console.log,
+    debug: console.log,
+    info: console.log,
+    warn: console.warn,
+    error: console.error,
+  },
   decorator: configuration && configuration && configuration.decorator || defaultDecorator
 });
 
@@ -157,7 +163,10 @@ const getLogger = configuration => ({
  */
 const log = configuration => level =>
   isTrue(configuration.levels[level])
-    ? passThrough(compose(configuration.library[level], configuration.decorator(level)))
+    ? (...message) => {
+        configuration.library[level](configuration.decorator(level)(headOf(message)), ...tailOf(message));
+        return isEqual(1)(lengthOf(message)) ? message[0] : message;
+    }
     : identity;
 
 export default logger;

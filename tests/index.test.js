@@ -104,3 +104,19 @@ test('log works with configuration and level.', () => {
     'error: hello world'
   ])
 });
+
+test('log supports multiple message arguments.', () => {
+  let stack = [];
+
+  const myConfiguration = {
+    levels: {
+      log: true
+    },
+    decorator: level => input => `${level}: ${input}`,
+    library: {log: (...message) => stack.push(message)}
+  };
+  expect(log(myConfiguration)('log')('hello world', 'i am a turtle')).toEqual(['hello world', 'i am a turtle']);
+  expect(stack).toEqual([
+    ['log: hello world', 'i am a turtle']
+  ])
+});
