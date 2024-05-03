@@ -169,10 +169,10 @@ const log = configuration => level =>
     }
     : identity;
 
-export default logger;
-
 export {
   defaultDecorator,
   getLogger,
   log
 };
+
+export default logger;
