@@ -1,6 +1,6 @@
 {
   "name": "@7urtle/logger",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Functional programming logger.",
   "type": "module",
   "sideEffects": false,
@@ -43,7 +43,7 @@
   },
   "homepage": "https://github.com/MartinGentleman/7urtle/tree/master/packages/lambda",
   "devDependencies": {
-    "@7urtle/lambda": "^1.4.1",
+    "@7urtle/lambda": "^1.4.3",
     "@babel/core": "^7.24.5",
     "@babel/plugin-proposal-throw-expressions": "^7.24.1",
     "@babel/plugin-transform-runtime": "^7.24.3",
