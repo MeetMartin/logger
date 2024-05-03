@@ -1,6 +1,6 @@
 {
   "name": "@7urtle/logger",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Functional programming logger.",
   "main": "dist/logger.min.js",
   "module": "src/index.js",
@@ -42,10 +42,9 @@
     "@babel/runtime": "^7.14.0",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.2.2",
-    "jest": "^24.9.0",
-    "webpack": "^4.46.0",
+    "jest": "^29.7.0",
+    "webpack": "^5.91.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.2"
-  },
-  "dependencies": {}
+    "webpack-dev-server": "^5.0.4"
+  }
 }
