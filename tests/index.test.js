@@ -120,3 +120,10 @@ test('log supports multiple message arguments.', () => {
     ['log: hello world', 'i am a turtle']
   ])
 });
+
+test('logger works with UTF characters.', () => {
+  const myLogger = logger();
+
+  expect(myLogger.log({ test: 'Příliš žluťoučký kůň úpěl ďábelské ódy' }))
+  .toEqual({ test: 'Příliš žluťoučký kůň úpěl ďábelské ódy' });
+});
